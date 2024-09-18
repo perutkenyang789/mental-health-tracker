@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -7,6 +8,7 @@ from main.models import MoodEntry
 from django.http import HttpResponse
 from django.core import serializers
 
+@login_required(login_url='/login')
 def show_main(request):
     mood_entries = MoodEntry.objects.all()
 
