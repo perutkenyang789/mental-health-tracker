@@ -89,14 +89,14 @@ def logout_user(request):
     return response
 
 def edit_mood(request, id):
-    # Get mood entry berdasarkan id
+
     mood = MoodEntry.objects.get(pk = id)
 
-    # Set mood entry sebagai instance dari form
+
     form = MoodEntryForm(request.POST or None, instance=mood)
 
     if form.is_valid() and request.method == "POST":
-        # Simpan form dan kembali ke halaman awal
+
         form.save()
         return HttpResponseRedirect(reverse('main:show_main'))
 
@@ -104,11 +104,11 @@ def edit_mood(request, id):
     return render(request, "edit_mood.html", context)
 
 def delete_mood(request, id):
-    # Get mood berdasarkan id
+
     mood = MoodEntry.objects.get(pk = id)
-    # Hapus mood
+
     mood.delete()
-    # Kembali ke halaman awal
+
     return HttpResponseRedirect(reverse('main:show_main'))
 
 @csrf_exempt
